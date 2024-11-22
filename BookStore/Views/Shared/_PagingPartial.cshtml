@@ -1,0 +1,59 @@
+﻿@using MyCrm.Domain.ViewModels.Paging
+@model BasePaging
+<div class="row mt-4">
+    <div class="col-12 pl-3">
+       
+
+        <nav>
+            <ul class="pagination pagination-gutter pagination-primary pagination-sm no-bg">
+
+                @if (Model.PageId > 1)
+                {
+                    <li >
+                        <a class="previous round" onclick="fillPageId(@Model.PageId-1)">
+                            &#8249;
+                        </a>
+                    </li>
+                }
+
+                <!-- First page -->
+                @if (Model.StartPage > 1)
+                {
+                    <li class="page-item"><a class="page-link" onclick="fillPageId(1)">1</a></li>
+                    @if (Model.StartPage > 2)
+                    {
+                        <li class="page-item previous disabled"><span class="page-link">...</span></li>
+                    }
+                }
+
+                <!-- Middle pages -->
+                @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+                {
+                    if (i == Model.PageId)
+                    {
+                        <li class="page-item active"><a class="page-link" onclick="fillPageId(@i)">@i</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" onclick="fillPageId(@i)">@i</a></li>
+                    }
+                }
+
+                <!-- Last page -->
+                @if (Model.EndPage < Model.PageCount)
+                {
+                    @if (Model.EndPage < Model.PageCount - 1)
+                    {
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    }
+                    <li class="page-item"><a class="page-link" onclick="fillPageId(@Model.PageCount)">@Model.PageCount</a></li>
+                }
+
+                @if (Model.PageId < Model.PageCount)
+                {
+                    <li><a class="next round" onclick="fillPageId(@Model.PageId+1)">&#8250;</a></li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@using BookStore.Domain.ViewModels.BookVM
+@model AddBookViewModel
+@{
+    SelectList cat = (SelectList)@ViewBag.Categories;
+    SelectList pub = (SelectList)@ViewBag.Publishers;
+    SelectList auth = (SelectList)@ViewBag.Authors;
+
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateBook" asp-controller="Home" method="post">
+           
+            
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ISBN" class="control-label"></label>
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" asp-items="@cat" class="form-control">
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div> 
+                <div class="form-group">
+                <label  class="control-label"></label>
+                <select asp-for="SelectedAuthorIds"  asp-items="@auth" class="form-control">
+                    </select>
+                <span asp-validation-for="SelectedAuthorIds" class="text-danger"></span>
+                   
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PublisherId" class="control-label"></label>
+                    <select asp-for="PublisherId" asp-items="@pub" class="form-control">
+                    </select>
+                    <span asp-validation-for="PublisherId" class="text-danger"></span>
+                </div>
+            <!-- Number of Chapters -->
+            <div class="form-group">
+                <label asp-for="NumberOfChapters" class="control-label"></label>
+                <input asp-for="NumberOfChapters" class="form-control" />
+                <span asp-validation-for="NumberOfChapters" class="text-danger"></span>
+            </div>
+
+            <!-- Number of Pages -->
+            <div class="form-group">
+                <label asp-for="NumberOfPages" class="control-label"></label>
+                <input asp-for="NumberOfPages" class="form-control" />
+                <span asp-validation-for="NumberOfPages" class="text-danger"></span>
+            </div>
+
+            <!-- Weight -->
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+
+            <!-- Publish Date -->
+            <div class="form-group">
+                <label asp-for="PublishDate" class="control-label"></label>
+                <input asp-for="PublishDate" type="date" class="form-control" />
+                <span asp-validation-for="PublishDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ایجاد کتاب</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Validation Scripts -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,35 @@
+﻿ @using BookStore.Domain.ViewModels.BookVM
+@model BookSearchModel
+@{
+    int startIndex = Model.GetCurrentPaging().SkipEntity;
+}
+<form asp-controller="Home" asp-action="Index" method="get" id="filter-search">
+<input type="hidden" id="pageId" name="pageId" value="@Model.PageId" />
+</form>
+    <div class="row mt-4">
+        @if (Model.Books.Any())
+    {
+        int i = startIndex;
+            @foreach (var item in Model.Books)
+        {
+            i++;
+          
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Category.CategoryName</p>
+                            <p>قیمت: @item.Price</p>
+                            <a href="#" class="btn btn-primary">مشاهده جزئیات</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No books available.</p> 
+        }
+    <partial name="_PagingPartial" model="@Model.GetCurrentPaging()" />
+    </div>
+ 

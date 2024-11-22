@@ -1,0 +1,50 @@
+﻿@using BookStore.Domain.ViewModels.BookVM
+@model BookSearchModel
+
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+<!-- Form -->
+<div class="container m-3 ">
+
+   
+    <div class="row border-2 box-shadow">
+            <div class="col-md-4 offset-2">
+                <form class="search-form" method="get" id="frmSearchBooks" data-url="@Url.Action("BookListAction", "Home")">
+                    <input type="search" name="Title" placeholder="جستجو کنید" id="search-box" asp-for="Title" class="form-control">
+                    <button type="button" class="btn btn-success btn-search ms-2">جستجو</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="dvList">
+                    @await Component.InvokeAsync("BooksList", this.Model)
+                </div>
+            </div>
+        </div>
+    
+        <hr />
+        <h1 class="heading mt-5"> <span>آخرین کتابها</span> </h1>
+     <!----------LatestBook------------->
+
+        <div class="row">
+            <div class="col-md-12">
+                @await Component.InvokeAsync("BooksLatest", this.Model)     
+            </div>
+
+        </div>
+        <hr />
+    <!---------------Categoreis------------------>
+   
+    <h1 class="heading mt-5"> <span>دسته بندی</span> </h1>
+            @await Component.InvokeAsync("CategoryList", this.Model)
+       
+<hr />
+</div>
+
+
+
+

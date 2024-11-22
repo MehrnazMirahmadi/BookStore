@@ -1,0 +1,53 @@
+﻿@using BookStore.Domain.ViewModels.CategoryVM
+@model List<CategoryViewModel>
+
+<div class="swiper-container category-swiper">
+    <div class="swiper-wrapper">
+        @foreach (var category in Model)
+        {
+            <div class="swiper-slide">
+                <div class="category-card">
+                    <h3>@category.CategoryName</h3>
+                    <p>پرفروش ترین: <strong>@category.BestSellerBookName</strong></p>
+                    <p>مجموع: @category.BookCount</p>
+                </div>
+            </div>
+        }
+    </div>
+
+  
+
+    <!-- Swiper pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+    const swiper = new Swiper(".category-swiper", {
+        slidesPerView: 1, // Default for small screens
+        spaceBetween: 5, // Default smaller spacing
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 10, // Slightly more spacing for medium screens
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+            1024: {
+                slidesPerView: 4, // 4 parts for larger screens
+                spaceBetween: 15, // Adjust spacing between slides
+            },
+        },
+    });
+});
+
+    </script>

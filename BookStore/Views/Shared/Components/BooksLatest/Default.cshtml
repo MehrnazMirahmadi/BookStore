@@ -1,0 +1,25 @@
+﻿@using BookStore.Domain.Entities
+@model List<Book>
+
+<div class="book-cards-container">
+    @foreach (var book in Model)
+    {
+        <div class="book-card">
+            <div class="book-header">
+                <h3>@book.Title</h3>
+                <p class="category">@book.Category.CategoryName</p>
+            </div>
+            <div class="book-body">
+                <p><strong>قیمت:</strong>@book.Price</p>
+            </div>
+            @{
+                string authors = "";
+            }
+            @foreach (var auth in book.BookAuthors)
+            {
+                authors += auth.Author.FullName + ", ";
+            }
+            @authors.Trim().Trim(',')
+        </div>
+    }
+</div>

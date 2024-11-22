@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+    <partial name="_HeaderRefrences" />
+</head>
+<body>
+    <!-- header section starts  -->
+
+    <header class="header">
+
+        <div class="header-1">
+
+            <a href="#" class="logo"> <i class="fas fa-book"></i> کتابخانه </a>
+
+            <form asp-controller="Home" asp-action="CreateBook">
+                <button type="submit" class="btn btn-success btn-search ms-2">افزودن کتاب جدید</button>
+            </form>
+
+          
+
+        </div>
+
+        <div class="header-2">
+            <nav class="navbarCustom">
+                <a href="#home">خانه</a>
+                <a href="#arrivals">جدیدها</a>
+                <a href="#reviews">نظرات</a>
+                <a href="#blogs">وبلاگ</a>
+            </nav>
+        </div>
+
+    </header>
+
+    <!-- header section ends -->
+   
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+<!--Footer-->
+    <partial name="_Footer" />
+    <partial name="_FooterRefrences" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
